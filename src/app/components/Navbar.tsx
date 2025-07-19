@@ -1,5 +1,7 @@
 import React from 'react'
 import { IoSunnyOutline } from "react-icons/io5";
+import { MdMyLocation } from "react-icons/md";
+import { FaLocationDot } from "react-icons/fa6";
 
 type Props = {}
 
@@ -11,7 +13,14 @@ export default function Navbar({ }: Props) {
                     <h2 className='text-gray-500 text-3xl'>Weather</h2>
                     <IoSunnyOutline className='text-3xl mt-1 text-yellow-300' />
                 </p>
-                
+                {/* search bar section */}
+                <section className='flex gap-2 items-center '>
+                    <MdMyLocation className='text-2xl text-gray-400  hover:opacity-80 cursor-pointer' />
+                    <FaLocationDot className='text-3xl' />
+                    <p className='text-slate-900/80 text-sm'>
+                        Bangladesh
+                    </p>
+                </section>
             </div>
         </nav>
     )
