@@ -11,6 +11,7 @@ import { getDayOrNightIcon } from "@/utils/getDayOrNightIcon";
 import { WeatherDetails } from "./components/WeatherDetails";
 import { metersToKilometers } from "@/utils/metersToKilometers";
 import { convertWindSpeed } from "@/utils/convertWindSpeed";
+import { ForecastWeatherDetails } from "./components/ForecastWeatherDetails";
 
 
 
@@ -87,10 +88,29 @@ export default function Home() {
 
   const firstData = data?.list[0]
 
+  const uniqueDates = [
+    ...new Set(
+      data?.list.map(
+        (entry) => new Date(entry.dt * 1000).toISOString().split("T")[0]
+      )
+    )
+  ];
+
+  // Filtering data to get the first entry after 6 AM for each unique date
+  const firstDataForEachDate = uniqueDates.map((date) => {
+    return data?.list.find((entry) => {
+      const entryDate = new Date(entry.dt * 1000).toISOString().split("T")[0];
+      const entryTime = new Date(entry.dt * 1000).getHours();
+      return entryDate === date && entryTime >= 6;
+    });
+  });
+
+
   if (isPending) return <div className="flex items-center min-h-screen justify-center">
     <p className="animate-bounce">Loading...</p>
   </div>;
   if (error) return <div>Error occurred!</div>;
+
   return (
     <div className="flex flex-col gap-4  bg-gray-100 min-h-screen">
       <Navbar></Navbar>
@@ -160,6 +180,10 @@ export default function Home() {
         {/* 7 days forecast data */}
         <section className="flex w-full flex-col gap-4 ">
           <p className="text-2xl">Forecast <span className="text-lg">(7 days)</span></p>
+          {firstDataForEachDate.map((d, i) => (
+            <ForecastWeatherDetails key={i}/>
+          ))}
+
         </section>
       </main>
     </div>
