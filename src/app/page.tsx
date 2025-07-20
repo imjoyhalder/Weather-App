@@ -8,6 +8,8 @@ import Container from "./components/Container";
 import { convertKelvinToCelsius } from "@/utils/convertKelvinToCelsius";
 import WeatherIcon from "./components/WeatherIcon";
 import { getDayOrNightIcon } from "@/utils/getDayOrNightIcon";
+import { WeatherDetails } from "./components/WeatherDetails";
+import { metersToKilometers } from "@/utils/metersToKilometers";
 
 
 
@@ -91,7 +93,7 @@ export default function Home() {
   return (
     <div className="flex flex-col gap-4  bg-gray-100 min-h-screen">
       <Navbar></Navbar>
-      <main className="px-3 max-w-7xl mx-auto flex-col gap-9 w-full pb-10 pt-4">
+      <main className="px-3 max-w-7xl mx-auto flex-col gap-9 w-full pb-10 pt-4 space-y-5">
         {/* Today data */}
         <section className="space-y-4" >
           <div className="space-y-2" >
@@ -132,11 +134,24 @@ export default function Home() {
               </div>
             </Container>
           </div>
+          <div className="flex gap-4">
+              {/* lef */}
+              <Container className="w-fit border-none justify-center flex-col px-4 items-center">
+                  <p className=" capitalize text-center text-lg">{firstData?.weather[0].description}</p>
+                  <WeatherIcon iconName={getDayOrNightIcon(firstData?.weather[0].icon ?? '', firstData?.dt_txt??'')}/>
+              </Container>
+              {/* right */}
+
+              <Container className="bg-yellow-300/80 px-6 gap-4 justify-between overflow-x-auto">
+                  <WeatherDetails visibility={metersToKilometers(firstData?.visibility ?? 10000)} 
+                  airPressure={`${firstData.main.pressure} hPa`}/>
+              </Container>
+          </div>
         </section>
 
         {/* 7 days forecast data */}
-        <section>
-
+        <section className="flex w-full flex-col gap-4 ">
+            <p className="text-2xl">Forecast <span className="text-lg">(7 days)</span></p>  
         </section>
       </main>
     </div>
