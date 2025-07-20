@@ -1,9 +1,10 @@
 import React from 'react'
 import { FiDroplet } from 'react-icons/fi';
 import { LuEye } from "react-icons/lu";
-import { PiSpeedometer } from "react-icons/pi";
+import { IoSpeedometer } from "react-icons/io5";
 import { TbSunrise } from "react-icons/tb";
 import { FiSunset } from "react-icons/fi";
+import { MdAir } from "react-icons/md";
 
 export interface WeatherDetailsProps {
     visibility: string;
@@ -38,12 +39,12 @@ export const WeatherDetails = (props: WeatherDetailsProps) => {
                 value={humidity}
             />
             <SingleWeatherDetails
-                icon={<LuEye />}
+                icon={<MdAir />}
                 information='WindSpeed'
                 value={windSpeed}
             />
             <SingleWeatherDetails
-                icon={<PiSpeedometer />}
+                icon={<IoSpeedometer />}
                 information='Air Pressure'
                 value={airPressure}
             />
