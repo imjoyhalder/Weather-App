@@ -105,6 +105,7 @@ export default function Home() {
     });
   });
 
+  console.log(firstDataForEachDate)
 
   if (isPending) return <div className="flex items-center min-h-screen justify-center">
     <p className="animate-bounce">Loading...</p>
@@ -155,6 +156,7 @@ export default function Home() {
               </div>
             </Container>
           </div>
+
           <div className="flex gap-4">
             {/* lef */}
             <Container className="w-fit border-none justify-center flex-col px-4 items-center">
@@ -181,7 +183,29 @@ export default function Home() {
         <section className="flex w-full flex-col gap-4 ">
           <p className="text-2xl">Forecast <span className="text-lg">(7 days)</span></p>
           {firstDataForEachDate.map((d, i) => (
-            <ForecastWeatherDetails key={i}/>
+            <ForecastWeatherDetails
+              key={i}
+              description={d?.weather[0].description ?? ""}
+              weatherIcon={d?.weather[0].icon ?? "01d"}
+              dateText={format(parseISO(d?.dt_txt ?? ""), "dd.MM")}
+              day={format(parseISO(d?.dt_txt ?? ""), "EEEE")}
+              feels_like={`${d?.main.feels_like ?? ""}`}
+              temp={d?.main.temp ?? 0}
+              temp_max={d?.main.temp_max ?? 0}
+              temp_min={d?.main.temp_min ?? 0}
+              airPressure={`${d?.main.pressure} hPa`}
+              humidity={`${d?.main.humidity}%`}
+              sunrise={format(
+                fromUnixTime(d?.city?.sunrise ?? 1702517657),
+                "H:mm"
+              )}
+              sunset={format(
+                fromUnixTime(d?.city?.sunset ?? 1702517657),
+                "H:mm"
+              )}
+              visibility={`${metersToKilometers(d?.visibility ?? 10000)} `}
+              windSpeed={`${convertWindSpeed(d?.wind.speed ?? 2.64)} `}
+            />
           ))}
 
         </section>
