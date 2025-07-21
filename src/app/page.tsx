@@ -12,6 +12,7 @@ import { WeatherDetails } from "./components/WeatherDetails";
 import { metersToKilometers } from "@/utils/metersToKilometers";
 import { convertWindSpeed } from "@/utils/convertWindSpeed";
 import { ForecastWeatherDetails } from "./components/ForecastWeatherDetails";
+import Footer from "./components/Footer";
 
 
 
@@ -72,6 +73,7 @@ export interface ForecastApiResponse {
     sunset: number;
   };
 }
+
 
 
 export default function Home() {
@@ -209,7 +211,12 @@ export default function Home() {
           ))}
 
         </section>
+
       </main>
+      {/* Footer section */}
+      <footer>
+        <Footer />
+      </footer>
     </div>
   );
 }
