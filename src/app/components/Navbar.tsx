@@ -49,35 +49,73 @@ export default function Navbar({ }: Props) {
         setShowSuggestions(false)
     }
 
-    const handleSubmitSearch = (e:  React.FormEvent<HTMLFormElement>)=>{
+    const handleSubmitSearch = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
-        if(suggestions.length==0){
+        if (suggestions.length == 0) {
             setError('Location not found')
         }
-        else{
+        else {
             setError('')
             setPlace(city)
             setShowSuggestions(false)
         }
     }
 
+    // return (
+    //     <nav className='shadow-sm sticky  top-0 left-0 bg-gray-100'>
+    //         <div className='h-[80px] w-full flex justify-between items-center max-w-7xl px-3 mx-auto'>
+    //             <div className='flex items-center justify-center gap-2 '>
+    //                 <h2 className='text-gray-500 text-3xl'>Weather</h2>
+    //                 <IoSunnyOutline className='text-3xl mt-1 text-yellow-300' />
+    //             </div>
+
+    //             {/* Location & search bar section */}
+    //             <section className='flex relative  md:top- gap-2 items-center '>
+    //                 <MdMyLocation className='text-2xl text-gray-400  hover:opacity-80 cursor-pointer' />
+    //                 <FaLocationDot className='text-2xl' />
+    //                 <p className='text-slate-900/80 text-sm'>
+    //                     {city}
+    //                 </p>
+
+    //                 {/* Search Bar section */}
+    //                 <div className='relative'>
+    //                     <SearchBox
+    //                         value={city}
+    //                         onChange={(e) => handleInputChange(e.target.value)}
+    //                         onSubmit={handleSubmitSearch}
+    //                     />
+    //                     <SuggestionBox
+    //                         {...{
+    //                             showSuggestions,
+    //                             suggestions,
+    //                             handleSuggestionClick,
+    //                             error
+    //                         }}
+    //                     />
+    //                 </div>
+    //             </section>
+    //         </div>
+    //     </nav>
+    // )
     return (
-        <nav className='shadow-sm sticky  top-0 left-0 bg-gray-100'>
+        <nav className='shadow-sm sticky top-0 left-0 bg-gray-100 z-50'>
             <div className='h-[80px] w-full flex justify-between items-center max-w-7xl px-3 mx-auto'>
-                <div className='flex items-center justify-center gap-2 '>
-                    <h2 className='text-gray-500 text-3xl'>Weather</h2>
-                    <IoSunnyOutline className='text-3xl mt-1 text-yellow-300' />
+                {/* Branding */}
+                <div className='flex items-center gap-2'>
+                    <h2 className='text-gray-500 text-2xl md:text-3xl'>Weather</h2>
+                    <IoSunnyOutline className='text-2xl md:text-3xl mt-1 text-yellow-300' />
                 </div>
-                {/* Location & search bar section */}
-                <section className='hidden md:flex gap-2 items-center '>
-                    <MdMyLocation className='text-2xl text-gray-400  hover:opacity-80 cursor-pointer' />
+
+                {/* Location & Search */}
+                <section className='hidden md:flex relative gap-3 items-center'>
+                    <MdMyLocation className='text-2xl text-gray-400 hover:opacity-80 cursor-pointer' />
                     <FaLocationDot className='text-2xl' />
-                    <p className='text-slate-900/80 text-sm'>
-                        Bangladesh
+                    <p className='text-slate-900/80 text-sm hidden lg:block'>
+                        {city}
                     </p>
 
-                    {/* Search Bar section */}
-                    <div className='relative'>
+                    {/* Search Box */}
+                    <div className='relative w-48 md:w-64 lg:w-80'>
                         <SearchBox
                             value={city}
                             onChange={(e) => handleInputChange(e.target.value)}
@@ -94,8 +132,34 @@ export default function Navbar({ }: Props) {
                     </div>
                 </section>
             </div>
+
+            {/* Mobile Search & Location Section */}
+            <div className='flex md:hidden flex-col items-center px-4 pb-3 gap-2'>
+                <div className='flex items-center gap-2'>
+                    <MdMyLocation className='text-xl text-gray-400 hover:opacity-80 cursor-pointer' />
+                    <FaLocationDot className='text-xl' />
+                    <p className='text-slate-900/80 text-sm'>{city}</p>
+                </div>
+
+                <div className='w-full relative'>
+                    <SearchBox
+                        value={city}
+                        onChange={(e) => handleInputChange(e.target.value)}
+                        onSubmit={handleSubmitSearch}
+                    />
+                    <SuggestionBox
+                        {...{
+                            showSuggestions,
+                            suggestions,
+                            handleSuggestionClick,
+                            error
+                        }}
+                    />
+                </div>
+            </div>
         </nav>
-    )
+    );
+
 }
 
 function SuggestionBox({

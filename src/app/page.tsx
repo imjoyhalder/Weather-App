@@ -106,14 +106,14 @@ export default function Home() {
   const uniqueDates = [
     ...new Set(
       data?.list.map(
-        (entry) => new Date(entry.dt * 1000).toISOString().split("T")[0]
+        (entry: WeatherForecast) => new Date(entry.dt * 1000).toISOString().split("T")[0]
       )
     )
   ];
 
   // Filtering data to get the first entry after 6 AM for each unique date
   const firstDataForEachDate = uniqueDates.map((date) => {
-    return data?.list.find((entry) => {
+    return data?.list.find((entry: WeatherForecast) => {
       const entryDate = new Date(entry.dt * 1000).toISOString().split("T")[0];
       const entryTime = new Date(entry.dt * 1000).getHours();
       return entryDate === date && entryTime >= 6;
@@ -158,7 +158,7 @@ export default function Home() {
 
               {/* time and weather icon */}
               <div className="flex gap-10 sm:gap-16 overflow-x-auto w-full justify-between pr-3">
-                {data?.list.map((d,i:number) =>
+                {data?.list.map((d: WeatherForecast,i:number) =>
                   <div key={i}
                     className="flex flex-col justify-between gap-2 items-center text-xs font-semibold"
                   >
@@ -204,7 +204,7 @@ export default function Home() {
               weatherIcon={d?.weather[0].icon ?? "01d"}
               // dateText={format(parseISO(d?.dt_txt ?? ""), "dd.MM")}
               // day={format(parseISO(d?.dt_txt ?? ""), "EEEE")}
-              feels_like={`${d?.main.feels_like ?? ""}`}
+              feels_like={`${(d?.main.feels_like)??0}`}
               temp={d?.main.temp ?? 0}
               temp_max={d?.main.temp_max ?? 0}
               temp_min={d?.main.temp_min ?? 0}
