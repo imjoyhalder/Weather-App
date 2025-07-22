@@ -145,7 +145,7 @@ export default function Home() {
 
               {/* time and weather icon */}
               <div className="flex gap-10 sm:gap-16 overflow-x-auto w-full justify-between pr-3">
-                {data?.list.map((d, i) =>
+                {data?.list.map((d,i:number) =>
                   <div key={i}
                     className="flex flex-col justify-between gap-2 items-center text-xs font-semibold"
                   >
@@ -172,8 +172,8 @@ export default function Home() {
                 visibility={metersToKilometers(firstData?.visibility ?? 10000)}
                 airPressure={`${firstData.main.pressure} hPa`}
                 humidity={`${firstData?.main.humidity}%`}
-                sunrise={format(fromUnixTime(data.city.sunrise ?? 1702949452), 'H:mm')}
-                sunset={format(fromUnixTime(data.city.sunset ?? 1702949459), 'H:mm')}
+                sunrise={format(fromUnixTime(data?.city.sunrise ?? 1702949452), 'H:mm')}
+                sunset={format(fromUnixTime(data?.city.sunset ?? 1702949459), 'H:mm')}
                 windSpeed={convertWindSpeed(firstData?.wind.speed ?? 1.64)}
               />
 

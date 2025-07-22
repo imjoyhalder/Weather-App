@@ -16,7 +16,7 @@ export default function Navbar({ }: Props) {
                     <IoSunnyOutline className='text-3xl mt-1 text-yellow-300' />
                 </div>
                 {/* Location & search bar section */}
-                <section className='flex gap-2 items-center '>
+                <section className='hidden md:flex gap-2 items-center '>
                     <MdMyLocation className='text-2xl text-gray-400  hover:opacity-80 cursor-pointer' />
                     <FaLocationDot className='text-2xl' />
                     <p className='text-slate-900/80 text-sm'>
