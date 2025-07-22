@@ -13,6 +13,9 @@ import { metersToKilometers } from "@/utils/metersToKilometers";
 import { convertWindSpeed } from "@/utils/convertWindSpeed";
 import { ForecastWeatherDetails } from "./components/ForecastWeatherDetails";
 import Footer from "./components/Footer";
+import { useAtom } from "jotai";
+import { placeAtom } from "./atom";
+import { useEffect } from "react";
 
 
 
@@ -78,15 +81,25 @@ export interface ForecastApiResponse {
 
 export default function Home() {
 
-  const { isPending, error, data } = useQuery({
+      const [place, setPlace] = useAtom(placeAtom)
+
+  //https://api.openweathermap.org/data/2.5/weather?q=Pune&appid=3efbd03c278fab207e0ac146012884e2&units=metric
+  // https://api.openweathermap.org/data/2.5/forecast?q=Dhaka&appid=3efbd03c278fab207e0ac146012884e2&units=metric
+
+
+  const { isPending, error, data, refetch } = useQuery({
     queryKey: ['repoData'],
     queryFn: async () => {
       const { data } = await axios.get(
-        `https://api.openweathermap.org/data/2.5/forecast?lat=44.34&lon=10.99&appid=${process.env.NEXT_PUBLIC_WEATHER_KEY}`
+        `https://api.openweathermap.org/data/2.5/forecast?q=${place}&appid=${process.env.NEXT_PUBLIC_WEATHER_KEY}`
       );
       return data;
     }
   });
+  
+  useEffect(()=>{
+    refetch()
+  },[place, refetch])
 
   const firstData = data?.list[0]
 
@@ -107,7 +120,7 @@ export default function Home() {
     });
   });
 
-  console.log(firstDataForEachDate)
+
 
   if (isPending) return <div className="flex items-center min-h-screen justify-center">
     <p className="animate-bounce">Loading...</p>
@@ -115,7 +128,7 @@ export default function Home() {
   if (error) return <div>Error occurred!</div>;
 
   return (
-    <div className="flex flex-col gap-4  bg-gray-100 min-h-screen">
+    <div className="flex flex-col gap-4  bg-gray-600 min-h-screen">
       <Navbar></Navbar>
       <main className="px-3 max-w-7xl mx-auto flex-col gap-9 w-full pb-10 pt-4 space-y-5">
         {/* Today data */}
@@ -189,8 +202,8 @@ export default function Home() {
               key={i}
               description={d?.weather[0].description ?? ""}
               weatherIcon={d?.weather[0].icon ?? "01d"}
-              dateText={format(parseISO(d?.dt_txt ?? ""), "dd.MM")}
-              day={format(parseISO(d?.dt_txt ?? ""), "EEEE")}
+              // dateText={format(parseISO(d?.dt_txt ?? ""), "dd.MM")}
+              // day={format(parseISO(d?.dt_txt ?? ""), "EEEE")}
               feels_like={`${d?.main.feels_like ?? ""}`}
               temp={d?.main.temp ?? 0}
               temp_max={d?.main.temp_max ?? 0}
@@ -213,6 +226,7 @@ export default function Home() {
         </section>
 
       </main>
+
       {/* Footer section */}
       <footer>
         <Footer />
