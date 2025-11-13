@@ -1,36 +1,78 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🌤️ Bangladesh Weather App
 
-## Getting Started
+A modern, responsive weather application built with **Next.js**, **TypeScript**, and **Tailwind CSS**, designed specifically for **Bangladesh weather conditions**.
 
-First, run the development server:
+![Weather Banner](https://images.unsplash.com/photo-1504608524841-42fe6f032b4b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%253D%253D&auto=format&fit=crop&w=2060&q=80)
+
+---
+
+## ✨ Features
+
+### 🌟 Core Features
+- **Real-time Weather Data** – Current conditions fetched live  
+- **7-Day Forecast** – Detailed weekly weather predictions  
+- **Location-based Weather** – Automatic current location detection  
+- **Search Functionality** – Find weather for any city in Bangladesh  
+- **Responsive Design** – Smooth experience across all devices  
+
+---
+
+## 🎨 User Experience
+- **Beautiful UI** – Modern glass-morphism & gradient themes  
+- **Interactive Elements** – Smooth animations & hover effects  
+- **Weather Icons** – Animated condition-based icons  
+- **Loading States** – Weather-themed loading animations  
+- **Error Handling** – Clear and friendly error messages  
+
+---
+
+## 📊 Weather Metrics
+- **Temperature** – Current, feels like, high & low  
+- **Atmospheric Data** – Humidity, pressure, visibility  
+- **Wind Information** – Wind speed & direction  
+- **Sun Times** – Sunrise & sunset  
+- **Weather Conditions** – Detailed descriptions & icons  
+
+---
+
+## 🚀 Live Demo
+👉 **Live Site:** *Add your deployed link here*  
+Example:  
+https://your-weather-app.vercel.app
+
+---
+
+## 🛠️ Technology Stack
+
+### **Frontend**
+- **Next.js 14** – App Router support  
+- **TypeScript** – Strong typing  
+- **Tailwind CSS** – Utility-first framework  
+- **React Icons** – Icon library  
+
+### **State Management**
+- **Jotai** – Lightweight and flexible  
+- **TanStack Query** – Data fetching & caching  
+
+### **APIs**
+- **OpenWeatherMap API** – Weather data source  
+- **Geolocation API** – Auto-detect user location  
+
+### **Development Tools**
+- **Date-fns** – Time & date formatting  
+- **Axios** – HTTP client  
+
+---
+
+## 📦 Installation & Setup
 
 ```bash
+
+# Navigate into the project
+cd weather-app
+
+# Install dependencies
+npm install
+
+# Run the development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
