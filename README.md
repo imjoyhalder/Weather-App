@@ -2,7 +2,7 @@
 
 A modern, responsive weather application built with **Next.js**, **TypeScript**, and **Tailwind CSS**, designed specifically for **Bangladesh weather conditions**.
 
-![Weather Banner](https://images.unsplash.com/photo-1504608524841-42fe6f032b4b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%253D%253D&auto=format&fit=crop&w=2060&q=80)
+![Weather Banner](https://i.ibb.co.com/N6nfCGtv/localhost-3000-4.png)
 
 ---
 
