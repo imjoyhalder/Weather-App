@@ -1,4 +1,5 @@
 // components/ErrorDisplay.tsx
+import Link from 'next/link';
 import { FaExclamationTriangle, FaRedo } from 'react-icons/fa';
 
 interface ErrorDisplayProps {
