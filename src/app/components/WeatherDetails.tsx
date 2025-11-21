@@ -1,9 +1,7 @@
 import React from 'react'
-import { FiDroplet, FiSunset } from "react-icons/fi";
 import { LuEye } from "react-icons/lu";
-import { IoSpeedometer } from "react-icons/io5";
-import { TbSunrise, TbWind } from "react-icons/tb";
-import { MdAir, MdWaterDrop } from "react-icons/md";
+import { MdWaterDrop } from "react-icons/md";
+import { TbWind } from "react-icons/tb";
 import { WiBarometer, WiSunrise, WiSunset } from "react-icons/wi";
 
 export interface WeatherDetailsProps {
@@ -16,6 +14,7 @@ export interface WeatherDetailsProps {
     windDirection?: string;
     feelsLike?: string;
     uvIndex?: string;
+    precipitation?: string;
 }
 
 interface WeatherDetailConfig {
@@ -35,9 +34,7 @@ export const WeatherDetails = (props: WeatherDetailsProps) => {
         airPressure = '1012 hPa',
         sunrise = '6:20',
         sunset = '18:48',
-        windDirection = 'NE',
-        feelsLike = '32°',
-        uvIndex = '5'
+        windDirection = 'NE'
     } = props;
 
     const getHumidityColor = (humidity: string) => {
@@ -105,7 +102,7 @@ export const WeatherDetails = (props: WeatherDetailsProps) => {
     ];
 
     return (
-        <div className="grid grid-cols-2 md:grid-cols-3  gap-4 lg:gap-6 w-full">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 lg:gap-6 w-full">
             {weatherDetails.map((detail, index) => (
                 <SingleWeatherDetails
                     key={detail.information}
@@ -129,50 +126,33 @@ export interface SingleWeatherDetailsProps {
 
 export function SingleWeatherDetails(props: SingleWeatherDetailsProps) {
     return (
-        <div 
+        <div
             className="flex flex-col items-center p-4 bg-white/50 rounded-2xl backdrop-blur-sm border border-white/20 shadow-sm hover:shadow-md transition-all duration-300 hover:scale-105 group"
-            style={{
-                animationDelay: `${(props.index || 0) * 100}ms`
-            }}
+            style={{ animationDelay: `${(props.index || 0) * 100}ms` }}
         >
-            {/* Icon Container */}
             <div className="flex items-center justify-center w-12 h-12 bg-gradient-to-br from-blue-50 to-cyan-50 rounded-xl mb-3 group-hover:from-blue-100 group-hover:to-cyan-100 transition-colors border border-blue-100">
-                <div className={props.color || 'text-blue-600'}>
-                    {props.icon}
-                </div>
+                <div className={props.color || 'text-blue-600'}>{props.icon}</div>
             </div>
 
-            {/* Value */}
             <div className="text-center mb-1">
-                <span className="text-2xl font-bold text-gray-800">
-                    {props.value}
-                </span>
+                <span className="text-2xl font-bold text-gray-800">{props.value}</span>
                 {props.unit && (
-                    <span className="text-sm font-medium text-gray-500 ml-1">
-                        {props.unit}
-                    </span>
+                    <span className="text-sm font-medium text-gray-500 ml-1">{props.unit}</span>
                 )}
             </div>
 
-            {/* Information */}
-            <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1">
-                {props.information}
-            </p>
+            <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1">{props.information}</p>
 
-            {/* Description */}
             {props.description && (
-                <p className="text-xs text-gray-400 font-medium">
-                    {props.description}
-                </p>
+                <p className="text-xs text-gray-400 font-medium">{props.description}</p>
             )}
         </div>
     );
 }
 
-// Additional Component for Weather Statistics
-export const WeatherStats = ({ feelsLike, uvIndex, precipitation }: { 
-    feelsLike: string; 
-    uvIndex: string; 
+export const WeatherStats = ({ feelsLike, uvIndex, precipitation }: {
+    feelsLike: string;
+    uvIndex: string;
     precipitation: string;
 }) => {
     const getUVColor = (uv: string) => {
@@ -206,18 +186,14 @@ export const WeatherStats = ({ feelsLike, uvIndex, precipitation }: {
 
     return (
         <div className="flex gap-4 justify-center">
-            {stats.map((stat, index) => (
-                <div 
+            {stats.map((stat) => (
+                <div
                     key={stat.label}
                     className="flex flex-col items-center p-3 bg-white/50 rounded-xl backdrop-blur-sm border border-white/20"
                 >
                     <span className="text-lg mb-1">{stat.icon}</span>
-                    <span className={`text-sm font-bold ${stat.color}`}>
-                        {stat.value}
-                    </span>
-                    <span className="text-xs text-gray-500">
-                        {stat.label}
-                    </span>
+                    <span className={`text-sm font-bold ${stat.color}`}>{stat.value}</span>
+                    <span className="text-xs text-gray-500">{stat.label}</span>
                 </div>
             ))}
         </div>
