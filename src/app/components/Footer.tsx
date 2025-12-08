@@ -4,8 +4,6 @@ import {
     FaLinkedin,
     FaTwitter,
     FaMapMarkerAlt,
-    FaEnvelope,
-    FaHeart,
     FaCloudSun,
     FaShieldAlt,
     FaFileContract,
@@ -163,7 +161,7 @@ export default function Footer({ }: Props) {
                     <div>
                         <h3 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
                             <IoHeartSharp className="text-rose-500" />
-                            Let's Connect
+                            Let&apos;s Connect
                         </h3>
                         <p className="text-sm text-gray-400 mb-4">
                             Follow for updates, contributions, and collaborations
@@ -240,7 +238,7 @@ export default function Footer({ }: Props) {
                 </div>
             </div>
 
-            {/* Animated Background Elements */}
+
             <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 animate-pulse"></div>
         </footer>
     );

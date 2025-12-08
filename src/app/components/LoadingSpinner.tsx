@@ -72,7 +72,7 @@ export default function LoadingSpinner() {
                 {/* Weather Facts */}
                 <div className="mt-8 p-4 bg-white/10 backdrop-blur-sm rounded-xl border border-white/20 max-w-md mx-auto">
                     <p className="text-sm text-white/70 italic">
-                        "The highest temperature ever recorded in Bangladesh was 45.1°C in Rajshahi"
+                        The highest temperature ever recorded in Bangladesh was 45.1°C in Rajshahi
                     </p>
                 </div>
 

@@ -1,6 +1,6 @@
 // components/HeroBanner.tsx - Fixed version
 import React from 'react';
-import { FaMapMarkerAlt, FaTemperatureHigh, FaWind } from 'react-icons/fa';
+import { FaMapMarkerAlt, FaWind } from 'react-icons/fa';
 import { WiHumidity, WiSunrise, WiSunset } from 'react-icons/wi';
 import { format, fromUnixTime } from 'date-fns';
 import { convertKelvinToCelsius } from '@/utils/convertKelvinToCelsius';
